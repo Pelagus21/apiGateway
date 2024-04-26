@@ -1,0 +1,18 @@
+server:
+  port: 9090
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: transactions
+          uri: lb://TRANSACTIONS
+          predicates:
+            - Path=/api/transactions/**
